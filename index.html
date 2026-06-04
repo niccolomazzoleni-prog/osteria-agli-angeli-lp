@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Osteria Agli Angeli - Ristorante di pesce nel cuore di Verona</title>
+<meta name="description" content="Osteria Agli Angeli, ristorante di pesce a Verona in un'antica farmacia storica. Prenota online il menu degustazione di benvenuto." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Dancing+Script:wght@400;600&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+
+<!-- Meta Pixel placeholder: inserire qui lo snippet del pixel -->
+
+<style>
+  :root {
+    --ivory: #F5F0EB;
+    --ivory-light: #FAFAF7;
+    --teal: #3D8B7A;
+    --teal-deep: #2D6B5C;
+    --gold: #A8935A;
+    --gold-soft: rgba(168,147,90,0.3);
+    --lilac: #C17ED4;
+    --dark: #1A1A1A;
+    --mid: #4A4A4A;
+    --error: #8B2020;
+    --font-display: 'Playfair Display', serif;
+    --font-garamond: 'EB Garamond', serif;
+    --font-script: 'Dancing Script', cursive;
+    --font-body: 'Lato', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ivory);
+    color: var(--dark);
+    font-family: var(--font-body);
+    font-weight: 300;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+  ::selection { background: var(--teal); color: var(--ivory); }
+
+  /* ============ ANNOUNCEMENT BAR ============ */
+  .announce {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 110;
+    background: var(--teal);
+    color: var(--ivory);
+    text-align: center;
+    padding: 11px 24px;
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    line-height: 1.4;
+  }
+  .announce a { display: block; transition: opacity 0.2s ease; }
+  .announce a:hover { opacity: 0.85; }
+  .announce .arrow { display: inline-block; margin-left: 6px; transition: transform 0.25s ease; }
+  .announce a:hover .arrow { transform: translateX(4px); }
+
+  /* ============ NAVBAR ============ */
+  .nav {
+    position: fixed;
+    top: 40px; left: 0; right: 0;
+    z-index: 100;
+    background: var(--ivory);
+    border-bottom: 1px solid rgba(168,147,90,0.2);
+    padding: 12px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: padding 0.3s ease;
+  }
+  .nav-logo { display: flex; align-items: center; }
+  .nav-logo img { height: 48px; width: auto; transition: height 0.3s ease; }
+  .nav-cta {
+    display: inline-block;
+    border: 1px solid var(--teal);
+    color: var(--teal);
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 10px 22px;
+    border-radius: 2px;
+    transition: background 0.25s ease, color 0.25s ease;
+  }
+  .nav-cta:hover { background: var(--teal); color: var(--ivory); }
+
+  /* ============ HERO ============ */
+  .hero {
+    position: relative;
+    color: var(--ivory);
+    padding: 130px 24px 90px;
+    margin-top: 110px;
+    text-align: center;
+    min-height: calc(100vh - 110px);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: url('hero.jpeg') center/cover no-repeat;
+    transform: scale(1.05);
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(26,26,26,0.55) 0%, rgba(26,26,26,0.4) 40%, rgba(26,26,26,0.9) 100%),
+      radial-gradient(ellipse at center, rgba(26,26,26,0.15) 0%, rgba(26,26,26,0.65) 100%);
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 820px;
+  }
+  .hero-eyebrow {
+    font-family: var(--font-body);
+    font-weight: 300;
+    color: var(--gold);
+    font-size: 12px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    color: var(--ivory);
+    font-size: clamp(42px, 5.8vw, 72px);
+    line-height: 1.05;
+    margin-bottom: 26px;
+    letter-spacing: -0.005em;
+  }
+  .hero-proof {
+    font-family: var(--font-body);
+    font-weight: 300;
+    color: rgba(245,240,235,0.85);
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    margin-bottom: 32px;
+  }
+  .hero-proof .star { color: var(--gold); letter-spacing: 0.06em; }
+  .hero-proof .sep { color: var(--gold); margin: 0 10px; }
+  .hero-sub {
+    font-family: var(--font-garamond);
+    font-style: italic;
+    color: rgba(245,240,235,0.9);
+    font-size: 24px;
+    max-width: 640px;
+    margin: 0 auto 44px;
+    line-height: 1.6;
+  }
+  .btn-primary {
+    display: inline-block;
+    background: var(--teal);
+    color: var(--ivory);
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 18px 38px;
+    border-radius: 2px;
+    transition: background 0.25s ease, transform 0.25s ease;
+  }
+  .btn-primary:hover { background: var(--ivory); color: var(--dark); transform: translateY(-2px); }
+  .btn-outline-gold {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 17px 36px;
+    border-radius: 2px;
+    transition: background 0.25s ease, color 0.25s ease;
+  }
+  .btn-outline-gold:hover { background: var(--gold); color: var(--ivory); }
+
+  /* ============ SECTIONS ============ */
+  section { padding: 110px 24px; position: relative; }
+  .wrap { max-width: 1200px; margin: 0 auto; }
+  .wrap-narrow { max-width: 760px; margin: 0 auto; }
+
+  .eyebrow {
+    font-family: var(--font-body);
+    font-weight: 300;
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+  }
+  .h-section {
+    font-family: var(--font-display);
+    font-weight: 400;
+    color: var(--dark);
+    font-size: clamp(34px, 4.4vw, 44px);
+    line-height: 1.1;
+    letter-spacing: -0.005em;
+  }
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    margin: 28px auto;
+    border: 0;
+  }
+
+  /* ============ PHOTO STRIP ============ */
+  .strip { padding: 0; }
+  .strip-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--ivory);
+  }
+  .strip-grid .cell {
+    aspect-ratio: 4/3;
+    overflow: hidden;
+  }
+  .strip-grid img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: brightness(0.88) sepia(0.08);
+    transition: transform 0.6s ease, filter 0.6s ease;
+  }
+  .strip-grid .cell:hover img {
+    transform: scale(1.04);
+    filter: brightness(1) sepia(0);
+  }
+
+  /* ============ POSITIONING ============ */
+  .positioning { background: var(--ivory); text-align: center; }
+  .positioning .h-section { color: var(--dark); }
+  .positioning-text {
+    font-family: var(--font-garamond);
+    color: var(--mid);
+    font-size: 21px;
+    line-height: 1.85;
+    max-width: 680px;
+    margin: 0 auto 24px;
+  }
+  .positioning-text:last-of-type { margin-bottom: 0; }
+
+  /* ============ REASONS ============ */
+  .reasons {
+    background: var(--teal);
+    padding: 110px 0;
+  }
+  .reasons-head {
+    text-align: center;
+    padding: 0 24px;
+    margin-bottom: 64px;
+  }
+  .reasons-head .h-section {
+    color: var(--ivory);
+    font-size: clamp(32px, 4vw, 40px);
+  }
+  .reasons-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .reason-card {
+    background: rgba(255,255,255,0.06);
+    padding: 40px 36px;
+    border-left: 1px solid rgba(245,240,235,0.15);
+  }
+  .reason-card:first-child { border-left: 0; }
+  .reason-num {
+    font-family: var(--font-display);
+    font-style: italic;
+    color: rgba(245,240,235,0.25);
+    font-size: 56px;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .reason-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    color: var(--ivory);
+    font-size: 20px;
+    line-height: 1.25;
+    margin-bottom: 14px;
+  }
+  .reason-text {
+    font-family: var(--font-body);
+    font-weight: 300;
+    color: rgba(245,240,235,0.85);
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  /* ============ BIG PHOTO ============ */
+  .big-photo { padding: 0; }
+  .big-photo img {
+    width: 100%;
+    height: 620px;
+    object-fit: cover;
+    object-position: center center;
+    filter: brightness(0.85) sepia(0.04);
+  }
+
+  /* ============ SOCIAL PROOF ============ */
+  .proof { background: var(--ivory); text-align: center; }
+  .proof .eyebrow { margin-bottom: 18px; }
+  .proof-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    color: var(--dark);
+    font-size: clamp(32px, 4vw, 40px);
+    margin-bottom: 8px;
+    line-height: 1.1;
+  }
+  .proof-sub {
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--teal);
+    font-size: clamp(28px, 3.4vw, 36px);
+    line-height: 1.1;
+    margin-bottom: 60px;
+  }
+  .proof-numbers {
+    display: inline-flex;
+    align-items: center;
+    gap: 60px;
+    margin-bottom: 56px;
+  }
+  .proof-item { text-align: center; }
+  .proof-big {
+    font-family: var(--font-display);
+    font-weight: 400;
+    color: var(--teal);
+    font-size: 72px;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .proof-stars {
+    color: var(--gold);
+    font-size: 16px;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+    line-height: 1;
+  }
+  .proof-label {
+    font-family: var(--font-body);
+    font-weight: 300;
+    color: var(--mid);
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .proof-sep {
+    width: 1px;
+    height: 110px;
+    background: var(--gold);
+  }
+  .proof-quote {
+    font-family: var(--font-garamond);
+    font-style: italic;
+    color: var(--mid);
+    font-size: 22px;
+    line-height: 1.65;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  /* ============ OFFERTA ============ */
+  .offer { background: var(--dark); color: var(--ivory); text-align: center; }
+  .offer .eyebrow { color: var(--gold); }
+  .offer-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    color: var(--ivory);
+    font-size: clamp(40px, 5vw, 52px);
+    line-height: 1.05;
+    margin-bottom: 22px;
+  }
+  .offer-sub {
+    font-family: var(--font-garamond);
+    font-style: italic;
+    color: rgba(245,240,235,0.82);
+    font-size: 22px;
+    max-width: 600px;
+    margin: 0 auto 56px;
+    line-height: 1.6;
+  }
+  .offer-box {
+    max-width: 580px;
+    margin: 0 auto;
+    border: 1px solid rgba(168,147,90,0.4);
+    background: rgba(255,255,255,0.04);
+    padding: 44px 52px;
+    text-align: center;
+  }
+  .offer-label {
+    font-family: var(--font-body);
+    font-weight: 400;
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .offer-claim {
+    font-family: var(--font-display);
+    font-weight: 400;
+    color: var(--ivory);
+    font-size: 32px;
+    line-height: 1.15;
+    margin-bottom: 18px;
+  }
+  .offer-claim-when {
+    font-family: var(--font-garamond);
+    font-style: italic;
+    color: var(--gold);
+    font-size: 17px;
+    margin-bottom: 28px;
+    letter-spacing: 0.02em;
+  }
+  .offer-dishes {
+    list-style: none;
+    text-align: left;
+    margin: 0 auto 28px;
+    max-width: 380px;
+  }
+  .offer-dishes li {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(168,147,90,0.2);
+  }
+  .offer-dishes li:last-child { border-bottom: 0; }
+  .offer-dishes .roman {
+    font-family: var(--font-garamond);
+    font-style: italic;
+    color: var(--gold);
+    font-size: 16px;
+    width: 30px;
+    flex-shrink: 0;
+  }
+  .offer-dishes .dish {
+    font-family: var(--font-display);
+    color: rgba(245,240,235,0.9);
+    font-size: 18px;
+    line-height: 1.45;
+  }
+  .offer-divider {
+    border: 0;
+    border-top: 1px solid rgba(168,147,90,0.3);
+    margin: 28px 0;
+  }
+  .offer-price {
+    font-family: var(--font-display);
+    font-weight: 400;
+    color: var(--gold);
+    font-size: 52px;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .offer-price-old {
+    text-decoration: line-through;
+    color: rgba(245,240,235,0.45);
+    font-size: 32px;
+    margin-right: 14px;
+    vertical-align: middle;
+  }
+  .offer-price-note {
+    font-family: var(--font-body);
+    font-weight: 300;
+    color: rgba(245,240,235,0.5);
+    font-size: 14px;
+    margin-bottom: 18px;
+  }
+  .offer-fineprint {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(245,240,235,0.55);
+    font-size: 14px;
+  }
+  .offer-badge {
+    display: inline-block;
+    margin-top: 32px;
+    border: 1px solid rgba(168,147,90,0.4);
+    color: var(--gold);
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    border-radius: 2px;
+  }
+  .offer-cta-wrap { margin-top: 44px; }
+
+  /* ============ FORM ============ */
+  .booking { background: var(--ivory); text-align: center; }
+  .booking .h-section { margin-bottom: 14px; }
+  .booking-sub {
+    font-family: var(--font-garamond);
+    font-style: italic;
+    color: var(--mid);
+    font-size: 22px;
+    line-height: 1.5;
+    margin-bottom: 56px;
+  }
+  .form-card {
+    max-width: 560px;
+    margin: 0 auto;
+    background: #FFFFFF;
+    border: 1px solid rgba(168,147,90,0.2);
+    border-radius: 4px;
+    padding: 44px 52px;
+    box-shadow: 0 4px 32px rgba(26,26,26,0.06);
+    text-align: left;
+  }
+  .form-group { margin-bottom: 22px; }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .form-row .form-group { margin-bottom: 0; }
+  .form-label {
+    display: block;
+    font-family: var(--font-body);
+    font-weight: 400;
+    color: var(--gold);
+    font-size: 18px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .form-input, .form-select, .form-textarea {
+    width: 100%;
+    background: #FFFFFF;
+    border: 1px solid rgba(26,26,26,0.15);
+    border-radius: 3px;
+    padding: 12px 16px;
+    font-family: var(--font-body);
+    font-weight: 300;
+    color: var(--dark);
+    font-size: 15px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .form-input::placeholder, .form-textarea::placeholder { color: rgba(26,26,26,0.4); }
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    outline: none;
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(61,139,122,0.12);
+  }
+  .form-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' stroke='%23A8935A' stroke-width='1.5' fill='none' stroke-linecap='round'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 38px;
+  }
+  .form-textarea { resize: vertical; min-height: 88px; }
+  .form-error {
+    color: var(--error);
+    font-size: 12px;
+    margin-top: 6px;
+    font-family: var(--font-body);
+    font-weight: 300;
+    display: none;
+  }
+  .form-error.visible { display: block; }
+  .form-input.invalid, .form-select.invalid, .form-textarea.invalid {
+    border-color: var(--error);
+    box-shadow: 0 0 0 3px rgba(139,32,32,0.1);
+  }
+  .form-submit {
+    width: 100%;
+    background: var(--teal);
+    color: var(--ivory);
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 18px;
+    border-radius: 3px;
+    transition: background 0.25s ease;
+    margin-top: 8px;
+  }
+  .form-submit:hover { background: var(--dark); }
+
+  /* Calendar */
+  .calendar {
+    background: #FFFFFF;
+    border: 1px solid rgba(26,26,26,0.15);
+    border-radius: 3px;
+    padding: 18px;
+  }
+  .cal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  .cal-title {
+    font-family: var(--font-garamond);
+    font-weight: 400;
+    color: var(--dark);
+    font-size: 18px;
+    letter-spacing: 0.04em;
+  }
+  .cal-nav {
+    font-family: var(--font-body);
+    color: var(--teal);
+    font-size: 20px;
+    padding: 4px 12px;
+    border-radius: 2px;
+    transition: background 0.2s ease;
+    line-height: 1;
+  }
+  .cal-nav:hover { background: rgba(61,139,122,0.1); }
+  .cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+  }
+  .cal-dow {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 11px;
+    color: var(--mid);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 6px 0;
+  }
+  .cal-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--dark);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+    user-select: none;
+  }
+  .cal-day:hover:not(.disabled):not(.selected) {
+    background: rgba(61,139,122,0.12);
+  }
+  .cal-day.disabled {
+    color: rgba(26,26,26,0.2);
+    cursor: not-allowed;
+  }
+  .cal-day.selected {
+    background: var(--teal);
+    color: #FFFFFF;
+  }
+  .cal-day.empty { cursor: default; }
+
+  /* Confirmation */
+  .form-success {
+    text-align: center;
+    padding: 24px 0;
+  }
+  .form-success .check {
+    width: 64px; height: 64px;
+    border: 1px solid var(--teal);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 22px;
+    color: var(--teal);
+    font-size: 28px;
+  }
+  .form-success .ok-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    color: var(--dark);
+    font-size: 32px;
+    line-height: 1.1;
+    margin-bottom: 14px;
+  }
+  .form-success .ok-text {
+    font-family: var(--font-garamond);
+    font-style: italic;
+    color: var(--mid);
+    font-size: 17px;
+    line-height: 1.7;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+
+  /* ============ TRUST BAR (sticky bottom) ============ */
+  .trust-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 105;
+    background: rgba(26, 26, 26, 0.96);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-top: 1px solid rgba(168,147,90,0.35);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 48px;
+    padding: 14px 24px;
+    transition: transform 0.4s ease;
+  }
+  .trust-bar.hidden { transform: translateY(110%); }
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: var(--ivory);
+  }
+  .trust-logo {
+    width: 28px; height: 28px;
+    flex-shrink: 0;
+  }
+  .trust-logo.fork {
+    width: auto; height: 22px;
+  }
+  .trust-rating {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 26px;
+    color: var(--gold);
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .trust-stars {
+    color: var(--gold);
+    font-size: 15px;
+    letter-spacing: 0.06em;
+    line-height: 1;
+  }
+  .trust-label {
+    font-family: var(--font-body);
+    font-weight: 300;
+    color: rgba(245,240,235,0.75);
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+  .trust-sep {
+    width: 1px;
+    height: 36px;
+    background: rgba(168,147,90,0.35);
+  }
+
+  /* ============ FOOTER ============ */
+  .footer {
+    background: var(--dark);
+    color: var(--ivory);
+    padding: 70px 24px 32px;
+    text-align: center;
+  }
+  .footer-logo {
+    height: 44px;
+    width: auto;
+    margin: 0 auto 18px;
+    opacity: 0.9;
+  }
+  .footer-tagline {
+    font-family: var(--font-script);
+    color: var(--gold);
+    font-size: 22px;
+    margin-bottom: 18px;
+    line-height: 1;
+  }
+  .footer-info {
+    font-family: var(--font-body);
+    font-weight: 300;
+    color: rgba(245,240,235,0.4);
+    font-size: 13px;
+    margin-bottom: 32px;
+  }
+  .footer-links {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+  .footer-link {
+    font-family: var(--font-body);
+    font-weight: 400;
+    color: var(--mid);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+  }
+  .footer-link:hover { color: var(--gold); }
+  .footer-copy {
+    font-family: var(--font-body);
+    font-weight: 300;
+    color: rgba(245,240,235,0.2);
+    font-size: 11px;
+    letter-spacing: 0.02em;
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 900px) {
+    .announce { font-size: 12px; padding: 10px 14px; line-height: 1.35; }
+    .nav, .nav.scrolled { padding: 10px 18px; top: 64px; }
+    .nav-logo img { height: 42px; }
+    section { padding: 70px 20px; }
+    .hero { padding: 80px 20px 80px; margin-top: 122px; min-height: calc(100vh - 122px); }
+    .hero-title { font-size: 40px; }
+    .hero-sub { font-size: 19px; }
+    .hero-proof { font-size: 14px; }
+    .strip-grid { grid-template-columns: 1fr; }
+    .strip-grid .cell { aspect-ratio: 16/9; }
+    .positioning-text { font-size: 18px; }
+    .reasons { padding: 70px 0; }
+    .reasons-head { margin-bottom: 40px; }
+    .reasons-grid { grid-template-columns: 1fr; gap: 1px; padding: 0; }
+    .reason-card { border-left: 0; border-top: 1px solid rgba(245,240,235,0.15); padding: 32px 28px; }
+    .reason-card:first-child { border-top: 0; }
+    .reason-text { font-size: 16px; }
+    .big-photo img { height: 420px; }
+    .proof-numbers { gap: 28px; }
+    .proof-big { font-size: 56px; }
+    .proof-sep { height: 90px; }
+    .proof-quote { font-size: 19px; }
+    .offer-box { padding: 32px 26px; }
+    .offer-title { font-size: 38px; }
+    .offer-sub { font-size: 19px; }
+    .offer-claim { font-size: 26px; }
+    .offer-claim-when { font-size: 15px; }
+    .offer-dishes .dish { font-size: 16px; }
+    .offer-price { font-size: 44px; }
+    .booking-sub { font-size: 19px; }
+    .form-label { font-size: 16px; }
+    .form-card { padding: 32px 24px; }
+    .form-row { grid-template-columns: 1fr; gap: 22px; }
+    .footer-links { gap: 18px; }
+    .trust-bar { gap: 18px; padding: 14px 12px; }
+    .trust-item { gap: 10px; }
+    .trust-logo { width: 26px; height: 26px; }
+    .trust-logo.fork { width: auto; height: 20px; }
+    .trust-rating { font-size: 22px; }
+    .trust-stars { display: none; }
+    .trust-label { font-size: 13px; }
+    .trust-sep { height: 32px; }
+  }
+  @media (max-width: 480px) {
+    .nav-cta { font-size: 11px; padding: 8px 14px; letter-spacing: 0.08em; }
+    .proof-numbers { flex-direction: column; gap: 32px; }
+    .proof-sep { width: 60px; height: 1px; }
+    .big-photo img { height: 320px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ ANNOUNCEMENT BAR ============ -->
+<div class="announce">
+  <a href="#prenota">Pranzo da Agli Angeli: menu degustazione 4 portate a 59&euro;, solo a pranzo &middot; prenotazione online <span class="arrow">&rsaquo;</span></a>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">
+    <img src="https://www.osteriaagliangeli.it/wp-content/uploads/2025/05/Logo-Angeli-Angeli-Vino-e-Cucina--scaled.png" alt="Osteria Agli Angeli" />
+  </a>
+  <a href="#prenota" class="nav-cta">Prenota</a>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">CORSO PORTA NUOVA &middot; VERONA</div>
+    <h1 class="hero-title">Un gioiello sconosciuto nel cuore di Verona</h1>
+    <div class="hero-proof">
+      <span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 4,7 su Google
+      <span class="sep">&middot;</span> 9,2 su TheFork
+    </div>
+    <p class="hero-sub">L'Osteria agli Angeli e' un ristorante di pesce nel cuore di Verona, nato all'interno di un'antica farmacia storica. Qui il tempo si ferma per regalare ai nostri ospiti la magia della buona cucina e della riservatezza.</p>
+    <a href="#offerta" class="btn-primary">Scopri l'offerta</a>
+  </div>
+</header>
+
+<!-- ============ PHOTO STRIP ============ -->
+<section class="strip">
+  <div class="strip-grid">
+    <div class="cell"><img src="https://www.osteriaagliangeli.it/wp-content/uploads/2024/02/DSC05659.jpg" alt="" /></div>
+    <div class="cell"><img src="https://www.osteriaagliangeli.it/wp-content/uploads/2024/02/DSC05724.jpg" alt="" /></div>
+    <div class="cell"><img src="https://www.osteriaagliangeli.it/wp-content/uploads/2024/02/DSC05755.jpg" alt="" /></div>
+  </div>
+</section>
+
+<!-- ============ POSITIONING ============ -->
+<section class="positioning">
+  <div class="wrap-narrow">
+    <div class="eyebrow">IL RISTORANTE</div>
+    <h2 class="h-section">Un'esperienza oltre la cena</h2>
+    <hr class="divider" />
+    <p class="positioning-text">Un locale progettato per chi vuole qualcosa di piu' di una cena. Che tu stia cercando il posto giusto per stupire il tuo partner, fare bella figura con un cliente, o semplicemente vivere un'esperienza gastronomica fuori dall'ordinario, Agli Angeli e' stato pensato per te.</p>
+    <p class="positioning-text">Ogni dettaglio e' curato. I panificati sono fatti in casa. Il benvenuto dello chef cambia ogni giorno e la carta dei vini e' una selezione curata dai nostri intenditori.</p>
+  </div>
+</section>
+
+<!-- ============ 3 MOTIVI ============ -->
+<section class="reasons">
+  <div class="reasons-head">
+    <h2 class="h-section">Perche venire da noi</h2>
+  </div>
+  <div class="reasons-grid">
+    <div class="reason-card">
+      <div class="reason-num">I</div>
+      <h3 class="reason-title">Per una serata romantica</h3>
+      <p class="reason-text">Un'atmosfera riservata, un giardino dove il mondo fuori scompare. Il posto giusto per fare colpo in modo discreto ed elegante.</p>
+    </div>
+    <div class="reason-card">
+      <div class="reason-num">II</div>
+      <h3 class="reason-title">Per un cliente importante</h3>
+      <p class="reason-text">Ambiente esclusivo, cucina di livello e nessuna distrazione. Quando vuoi che il contesto lavori per te.</p>
+    </div>
+    <div class="reason-card">
+      <div class="reason-num">III</div>
+      <h3 class="reason-title">Per chi ama mangiare bene</h3>
+      <p class="reason-text">Cucina di pesce di alto livello, ingredienti selezionati, un'esperienza costruita nei dettagli per chi ama mangiare bene in un posto esclusivo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BIG PHOTO ============ -->
+<section class="big-photo">
+  <img src="https://www.osteriaagliangeli.it/wp-content/uploads/2024/02/DSC05841.jpg" alt="Piatto Agli Angeli" />
+</section>
+
+<!-- ============ SOCIAL PROOF ============ -->
+<section class="proof">
+  <div class="wrap-narrow">
+    <div class="eyebrow">COSA DICONO DI NOI</div>
+    <div class="proof-title">Siamo una nuova apertura.</div>
+    <div class="proof-sub">Ma chi e' venuto, e' tornato.</div>
+    <div class="proof-numbers">
+      <div class="proof-item">
+        <div class="proof-big">4,7</div>
+        <div class="proof-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="proof-label">Google &middot; +200 recensioni</div>
+      </div>
+      <div class="proof-sep"></div>
+      <div class="proof-item">
+        <div class="proof-big">9,2</div>
+        <div class="proof-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="proof-label">TheFork &middot; 1.148 recensioni</div>
+      </div>
+    </div>
+    <p class="proof-quote">"Un'esperienza indimenticabile che consigliamo a tutti gli amanti della buona cucina."</p>
+  </div>
+</section>
+
+<!-- ============ OFFERTA ============ -->
+<section class="offer" id="offerta">
+  <div class="wrap-narrow">
+    <div class="eyebrow">SOLO A PRANZO &middot; PRENOTAZIONE ONLINE</div>
+    <h2 class="offer-title">Il pranzo da Agli Angeli</h2>
+    <p class="offer-sub">Vivi l'esperienza Agli Angeli a un prezzo riservato: un menu degustazione dello chef, disponibile solo a pranzo e solo per chi prenota online.</p>
+    <div class="offer-box">
+      <div class="offer-label">MENU DEGUSTAZIONE DI PRANZO</div>
+      <div class="offer-claim">4 portate dello chef</div>
+      <div class="offer-claim-when">Antipasto &middot; Primo &middot; Secondo &middot; Predessert + Dolce</div>
+      <ul class="offer-dishes">
+        <li><span class="roman">I.</span> <span class="dish">Antipasto &mdash; Capasanta panata alle erbe, brodo di alga kombu, piselli e culatta</span></li>
+        <li><span class="roman">II.</span> <span class="dish">Primo &mdash; Paccheri ai sette pomodori, burrata e basilico croccante</span></li>
+        <li><span class="roman">III.</span> <span class="dish">Secondo &mdash; Polpo caramellato, crema all'ajoblanco, crusco e menta</span></li>
+        <li><span class="roman">IV.</span> <span class="dish">Predessert + Dolce</span></li>
+      </ul>
+      <hr class="offer-divider" />
+      <div class="offer-price"><span class="offer-price-old">79&euro;</span>59<span style="font-size:32px;">&euro;</span></div>
+      <div class="offer-price-note">a persona &middot; acqua e caffe inclusi</div>
+      <div class="offer-fineprint">Valido dal lunedi al venerdi, solo a pranzo. Posti limitati.</div>
+      <div class="offer-badge">DISPONIBILE SOLO PRENOTANDO ONLINE</div>
+    </div>
+    <div class="offer-cta-wrap">
+      <a href="#prenota" class="btn-outline-gold">Prenota il tuo pranzo</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FORM ============ -->
+<section class="booking" id="prenota">
+  <div class="wrap-narrow">
+    <div class="eyebrow">PRENOTAZIONE</div>
+    <h2 class="h-section">Prenota il tuo tavolo</h2>
+    <p class="booking-sub">Scegli la data, compila il form. Ti confermiamo in poche ore.</p>
+
+    <form class="form-card" id="bookingForm" novalidate>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="nome">NOME</label>
+          <input class="form-input" type="text" id="nome" name="nome" placeholder="Inserisci il tuo nome" required />
+          <div class="form-error" data-error-for="nome">Inserisci il tuo nome</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="cognome">COGNOME</label>
+          <input class="form-input" type="text" id="cognome" name="cognome" placeholder="Inserisci il tuo cognome" required />
+          <div class="form-error" data-error-for="cognome">Inserisci il tuo cognome</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="email">EMAIL</label>
+        <input class="form-input" type="email" id="email" name="email" placeholder="Inserisci un'email valida" required />
+        <div class="form-error" data-error-for="email">Inserisci un'email valida</div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="telefono">TELEFONO</label>
+        <input class="form-input" type="tel" id="telefono" name="telefono" placeholder="+39 ..." required />
+        <div class="form-error" data-error-for="telefono">Inserisci un numero valido (minimo 8 cifre)</div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="persone">PERSONE</label>
+        <select class="form-select" id="persone" name="persone" required>
+          <option value="">Seleziona</option>
+          <option value="1">1 persona</option>
+          <option value="2">2 persone</option>
+          <option value="3">3 persone</option>
+          <option value="4">4 persone</option>
+          <option value="5">5 persone</option>
+          <option value="6+">6+ persone</option>
+        </select>
+        <div class="form-error" data-error-for="persone">Seleziona il numero di persone</div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">DATA</label>
+        <div class="calendar" id="calendar">
+          <div class="cal-header">
+            <button type="button" class="cal-nav" id="calPrev" aria-label="Mese precedente">&#8249;</button>
+            <div class="cal-title" id="calTitle"></div>
+            <button type="button" class="cal-nav" id="calNext" aria-label="Mese successivo">&#8250;</button>
+          </div>
+          <div class="cal-grid" id="calGrid"></div>
+        </div>
+        <input type="hidden" id="data" name="data" required />
+        <div class="form-error" data-error-for="data">Seleziona una data</div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="ora">ORA</label>
+        <select class="form-select" id="ora" name="ora" required>
+          <option value="">Seleziona</option>
+          <option value="12:00">12:00</option>
+          <option value="12:30">12:30</option>
+          <option value="13:00">13:00</option>
+          <option value="13:30">13:30</option>
+          <option value="19:00">19:00</option>
+          <option value="19:30">19:30</option>
+          <option value="20:00">20:00</option>
+          <option value="20:30">20:30</option>
+          <option value="21:00">21:00</option>
+        </select>
+        <div class="form-error" data-error-for="ora">Seleziona un orario</div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="note">NOTE</label>
+        <textarea class="form-textarea" id="note" name="note" placeholder="Richieste speciali, allergie, occasioni particolari (opzionale)" rows="3"></textarea>
+      </div>
+
+      <button type="submit" class="form-submit">CONFERMA PRENOTAZIONE</button>
+    </form>
+  </div>
+</section>
+
+<!-- ============ TRUST BAR (sticky) ============ -->
+<aside class="trust-bar" id="trustBar">
+  <div class="trust-item">
+    <svg class="trust-logo" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/>
+      <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/>
+      <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/>
+      <path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/>
+    </svg>
+    <span class="trust-rating">4,7</span>
+    <span class="trust-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+    <span class="trust-label">su Google</span>
+  </div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">
+    <svg class="trust-logo fork" viewBox="0 0 110 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g fill="#00A479">
+        <path d="M9.6 6.1c-.6 0-1 .5-1 1v3.6c0 .6-.4 1-1 1s-1-.4-1-1V7.1c0-.6-.4-1-1-1s-1 .5-1 1v3.6c0 .6-.4 1-1 1s-1-.4-1-1V7.1c0-.6-.5-1-1-1s-1 .5-1 1v4.1c0 1.7 1.1 3.1 2.7 3.6v6.7c0 .8.7 1.5 1.5 1.5s1.5-.7 1.5-1.5v-6.7c1.5-.5 2.7-1.9 2.7-3.6V7.1c-.1-.6-.5-1-1.1-1z"/>
+        <text x="14" y="18" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="-0.4">thefork</text>
+      </g>
+    </svg>
+    <span class="trust-rating">9,2</span>
+    <span class="trust-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+    <span class="trust-label">su TheFork</span>
+  </div>
+</aside>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <img src="https://www.osteriaagliangeli.it/wp-content/uploads/2025/05/2851432a-d8fc-45d2-96d4-a8b84ff64847-scaled.png" alt="Osteria Agli Angeli" class="footer-logo" />
+  <div class="footer-tagline">Vino e Cucina</div>
+  <div class="footer-info">Corso Porta Nuova 28 &middot; Verona</div>
+  <div class="footer-links">
+    <!-- TODO: sostituire con link TheFork reale -->
+    <a href="https://www.thefork.it" class="footer-link" target="_blank" rel="noopener">THEFORK</a>
+    <!-- TODO: sostituire con link Google Maps reale -->
+    <a href="https://maps.google.com/?q=Corso+Porta+Nuova+28+Verona" class="footer-link" target="_blank" rel="noopener">GOOGLE MAPS</a>
+    <a href="#prenota" class="footer-link">PRENOTA</a>
+  </div>
+  <div class="footer-copy">&copy; 2026 Agli Angeli &middot; Corso Porta Nuova 28, Verona</div>
+</footer>
+
+<script>
+  /* Trust bar: hide when footer is in view */
+  (function() {
+    const trust = document.getElementById('trustBar');
+    const footer = document.querySelector('.footer');
+    if (!trust || !footer || !('IntersectionObserver' in window)) return;
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => trust.classList.toggle('hidden', e.isIntersecting));
+    }, { threshold: 0.05 });
+    obs.observe(footer);
+  })();
+
+  /* ============ CALENDAR ============ */
+  (function() {
+    const monthNames = ['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
+    const dowNames = ['LUN','MAR','MER','GIO','VEN','SAB','DOM'];
+
+    const calTitle = document.getElementById('calTitle');
+    const calGrid  = document.getElementById('calGrid');
+    const calPrev  = document.getElementById('calPrev');
+    const calNext  = document.getElementById('calNext');
+    const dataInput = document.getElementById('data');
+
+    const today = new Date(); today.setHours(0,0,0,0);
+    let viewYear = today.getFullYear();
+    let viewMonth = today.getMonth();
+    let selectedDate = null;
+
+    function render() {
+      calTitle.textContent = monthNames[viewMonth] + ' ' + viewYear;
+      calGrid.innerHTML = '';
+      dowNames.forEach(d => {
+        const el = document.createElement('div');
+        el.className = 'cal-dow';
+        el.textContent = d;
+        calGrid.appendChild(el);
+      });
+      const firstDay = new Date(viewYear, viewMonth, 1);
+      const startOffset = (firstDay.getDay() + 6) % 7;
+      const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+      for (let i = 0; i < startOffset; i++) {
+        const empty = document.createElement('div');
+        empty.className = 'cal-day empty';
+        calGrid.appendChild(empty);
+      }
+      for (let d = 1; d <= daysInMonth; d++) {
+        const cell = document.createElement('div');
+        cell.className = 'cal-day';
+        cell.textContent = d;
+        const cellDate = new Date(viewYear, viewMonth, d);
+        const isPast = cellDate < today;
+        if (isPast) cell.classList.add('disabled');
+        else cell.addEventListener('click', () => selectDate(cellDate));
+        if (selectedDate &&
+            selectedDate.getFullYear() === cellDate.getFullYear() &&
+            selectedDate.getMonth() === cellDate.getMonth() &&
+            selectedDate.getDate() === cellDate.getDate()) {
+          cell.classList.add('selected');
+        }
+        calGrid.appendChild(cell);
+      }
+    }
+
+    function selectDate(date) {
+      selectedDate = date;
+      const yyyy = date.getFullYear();
+      const mm = String(date.getMonth() + 1).padStart(2,'0');
+      const dd = String(date.getDate()).padStart(2,'0');
+      dataInput.value = yyyy + '-' + mm + '-' + dd;
+      const err = document.querySelector('[data-error-for="data"]');
+      if (err) err.classList.remove('visible');
+      render();
+    }
+
+    calPrev.addEventListener('click', () => {
+      viewMonth--;
+      if (viewMonth < 0) { viewMonth = 11; viewYear--; }
+      if (viewYear < today.getFullYear() || (viewYear === today.getFullYear() && viewMonth < today.getMonth())) {
+        viewMonth = today.getMonth();
+        viewYear  = today.getFullYear();
+      }
+      render();
+    });
+    calNext.addEventListener('click', () => {
+      viewMonth++;
+      if (viewMonth > 11) { viewMonth = 0; viewYear++; }
+      render();
+    });
+
+    render();
+  })();
+
+  /* ============ FORM VALIDATION ============ */
+  (function() {
+    const form = document.getElementById('bookingForm');
+
+    function showError(name, show) {
+      const err = document.querySelector('[data-error-for="' + name + '"]');
+      const input = document.getElementById(name);
+      if (err) err.classList.toggle('visible', show);
+      if (input) input.classList.toggle('invalid', show);
+    }
+    const validateEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    const validatePhone = v => v.replace(/\D/g,'').length >= 8;
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const fields = ['nome','cognome','email','telefono','persone','data','ora'];
+      let ok = true;
+      fields.forEach(f => {
+        const el = document.getElementById(f);
+        const v = (el.value || '').trim();
+        let valid = v.length > 0;
+        if (f === 'email') valid = valid && validateEmail(v);
+        if (f === 'telefono') valid = valid && validatePhone(v);
+        showError(f, !valid);
+        if (!valid) ok = false;
+      });
+      if (!ok) {
+        const firstInvalid = form.querySelector('.invalid');
+        if (firstInvalid) firstInvalid.scrollIntoView({behavior:'smooth', block:'center'});
+        return;
+      }
+
+      // TODO: sostituire con vera POST al backend
+      // const data = new FormData(form);
+      // fetch('/api/booking', { method: 'POST', body: data })...
+
+      form.innerHTML = ''
+        + '<div class="form-success">'
+        + '  <div class="check">&#10003;</div>'
+        + '  <div class="ok-title">Prenotazione ricevuta</div>'
+        + '  <div class="ok-text">Ti contatteremo a breve per confermare il tavolo.</div>'
+        + '</div>';
+      form.scrollIntoView({behavior:'smooth', block:'center'});
+    });
+
+    form.querySelectorAll('.form-input, .form-select, .form-textarea').forEach(el => {
+      const clear = () => { if (el.id) showError(el.id, false); };
+      el.addEventListener('input', clear);
+      el.addEventListener('change', clear);
+    });
+  })();
+</script>
+
+</body>
+</html>
