@@ -18,6 +18,7 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
+<link rel="preload" as="image" href="hero.webp" fetchpriority="high" />
 
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -131,7 +132,7 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
   .hero-bg {
     position: absolute;
     inset: 0;
-    background: url('hero.jpeg') center/cover no-repeat;
+    background: url('hero.webp') center/cover no-repeat;
     transform: scale(1.05);
   }
   .hero-overlay {
@@ -211,6 +212,26 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
     transition: background 0.25s ease, color 0.25s ease;
   }
   .btn-outline-gold:hover { background: var(--gold); color: var(--ivory); }
+  .hero-cta-group {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-ghost {
+    display: inline-block;
+    border: 1px solid rgba(245,240,235,0.55);
+    color: var(--ivory);
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 18px 36px;
+    border-radius: 2px;
+    transition: background 0.25s ease, border-color 0.25s ease;
+  }
+  .btn-ghost:hover { background: rgba(245,240,235,0.1); border-color: var(--ivory); }
 
   /* ============ SECTIONS ============ */
   section { padding: 110px 24px; position: relative; }
@@ -627,78 +648,6 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
   }
   .form-submit:hover { background: var(--dark); }
 
-  /* Calendar */
-  .calendar {
-    background: #FFFFFF;
-    border: 1px solid rgba(26,26,26,0.15);
-    border-radius: 3px;
-    padding: 18px;
-  }
-  .cal-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 16px;
-  }
-  .cal-title {
-    font-family: var(--font-garamond);
-    font-weight: 400;
-    color: var(--dark);
-    font-size: 18px;
-    letter-spacing: 0.04em;
-  }
-  .cal-nav {
-    font-family: var(--font-body);
-    color: var(--teal);
-    font-size: 20px;
-    padding: 4px 12px;
-    border-radius: 2px;
-    transition: background 0.2s ease;
-    line-height: 1;
-  }
-  .cal-nav:hover { background: rgba(61,139,122,0.1); }
-  .cal-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 4px;
-  }
-  .cal-dow {
-    font-family: var(--font-body);
-    font-weight: 300;
-    font-size: 11px;
-    color: var(--mid);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-align: center;
-    padding: 6px 0;
-  }
-  .cal-day {
-    aspect-ratio: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-body);
-    font-weight: 400;
-    font-size: 14px;
-    color: var(--dark);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background 0.15s ease, color 0.15s ease;
-    user-select: none;
-  }
-  .cal-day:hover:not(.disabled):not(.selected) {
-    background: rgba(61,139,122,0.12);
-  }
-  .cal-day.disabled {
-    color: rgba(26,26,26,0.2);
-    cursor: not-allowed;
-  }
-  .cal-day.selected {
-    background: var(--teal);
-    color: #FFFFFF;
-  }
-  .cal-day.empty { cursor: default; }
-
   /* Confirmation */
   .form-success {
     text-align: center;
@@ -789,6 +738,32 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
     height: 36px;
     background: rgba(168,147,90,0.35);
   }
+
+  .form-hint {
+    font-size: 13px;
+    color: rgba(74,74,74,0.7);
+    margin-bottom: 10px;
+    font-family: var(--font-body);
+  }
+  .trust-cta {
+    display: inline-block;
+    background: var(--teal);
+    color: var(--ivory);
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 2px;
+    white-space: nowrap;
+    transition: background 0.2s ease;
+  }
+  .trust-cta:hover { background: var(--teal-deep); }
+  .trust-cta-wa {
+    background: #25D366;
+  }
+  .trust-cta-wa:hover { background: #1ebe5d; }
 
   /* ============ FOOTER ============ */
   .footer {
@@ -905,7 +880,7 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
 <!-- ============ NAVBAR ============ -->
 <nav class="nav" id="nav">
   <a href="#" class="nav-logo">
-    <img src="https://www.osteriaagliangeli.it/wp-content/uploads/2025/05/Logo-Angeli-Angeli-Vino-e-Cucina--scaled.png" alt="Osteria Agli Angeli" />
+    <img src="assets/logo-angeli.webp" alt="Osteria Agli Angeli" width="300" height="100" />
   </a>
   <a href="#prenota" class="nav-cta">Prenota</a>
 </nav>
@@ -922,16 +897,20 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
       <span class="sep">&middot;</span> 9,2 su TheFork
     </div>
     <p class="hero-sub">L'Osteria agli Angeli e' un ristorante di pesce nel cuore di Verona, nato all'interno di un'antica farmacia storica. Qui il tempo si ferma per regalare ai nostri ospiti la magia della buona cucina e della riservatezza.</p>
-    <a href="#offerta" class="btn-primary">Scopri l'offerta</a>
+    <div class="hero-cta-group">
+      <a href="#prenota" class="btn-primary">Prenota ora</a>
+      <a href="tel:+393276580878" class="btn-ghost" id="ctaTel">&#9742;&nbsp;Chiama</a>
+      <a href="https://wa.me/393276580878?text=Ciao%21+Vorrei+prenotare+un+tavolo+da+Agli+Angeli." class="btn-ghost" id="ctaWa" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
   </div>
 </header>
 
 <!-- ============ PHOTO STRIP ============ -->
 <section class="strip">
   <div class="strip-grid">
-    <div class="cell"><img src="https://www.osteriaagliangeli.it/wp-content/uploads/2024/02/DSC05659.jpg" alt="" /></div>
-    <div class="cell"><img src="https://www.osteriaagliangeli.it/wp-content/uploads/2024/02/DSC05724.jpg" alt="" /></div>
-    <div class="cell"><img src="https://www.osteriaagliangeli.it/wp-content/uploads/2024/02/DSC05755.jpg" alt="" /></div>
+    <div class="cell"><img src="assets/DSC05659.webp" alt="" loading="lazy" width="900" height="675" /></div>
+    <div class="cell"><img src="assets/DSC05724.webp" alt="" loading="lazy" width="900" height="675" /></div>
+    <div class="cell"><img src="assets/DSC05755.webp" alt="" loading="lazy" width="900" height="675" /></div>
   </div>
 </section>
 
@@ -972,7 +951,7 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
 
 <!-- ============ BIG PHOTO ============ -->
 <section class="big-photo">
-  <img src="https://www.osteriaagliangeli.it/wp-content/uploads/2024/02/DSC05841.jpg" alt="Piatto Agli Angeli" />
+  <img src="assets/DSC05841.webp" alt="Piatto Agli Angeli" loading="lazy" width="1400" height="620" />
 </section>
 
 <!-- ============ SOCIAL PROOF ============ -->
@@ -1034,22 +1013,15 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
     <p class="booking-sub">Scegli la data, compila il form. Ti confermiamo in poche ore.</p>
 
     <form class="form-card" id="bookingForm" novalidate>
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label" for="nome">NOME</label>
-          <input class="form-input" type="text" id="nome" name="nome" placeholder="Inserisci il tuo nome" required />
-          <div class="form-error" data-error-for="nome">Inserisci il tuo nome</div>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="cognome">COGNOME</label>
-          <input class="form-input" type="text" id="cognome" name="cognome" placeholder="Inserisci il tuo cognome" required />
-          <div class="form-error" data-error-for="cognome">Inserisci il tuo cognome</div>
-        </div>
+      <div class="form-group">
+        <label class="form-label" for="nome">NOME</label>
+        <input class="form-input" type="text" id="nome" name="nome" placeholder="Inserisci il tuo nome" required />
+        <div class="form-error" data-error-for="nome">Inserisci il tuo nome</div>
       </div>
 
       <div class="form-group">
         <label class="form-label" for="email">EMAIL</label>
-        <input class="form-input" type="email" id="email" name="email" placeholder="Inserisci un'email valida" required />
+        <input class="form-input" type="email" id="email" name="email" placeholder="tua@email.it" required />
         <div class="form-error" data-error-for="email">Inserisci un'email valida</div>
       </div>
 
@@ -1074,17 +1046,10 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
       </div>
 
       <div class="form-group">
-        <label class="form-label">DATA</label>
-        <div class="calendar" id="calendar">
-          <div class="cal-header">
-            <button type="button" class="cal-nav" id="calPrev" aria-label="Mese precedente">&#8249;</button>
-            <div class="cal-title" id="calTitle"></div>
-            <button type="button" class="cal-nav" id="calNext" aria-label="Mese successivo">&#8250;</button>
-          </div>
-          <div class="cal-grid" id="calGrid"></div>
-        </div>
-        <input type="hidden" id="data" name="data" required />
-        <div class="form-error" data-error-for="data">Seleziona una data</div>
+        <label class="form-label" for="data">DATA</label>
+        <div class="form-hint">Disponibile lun–ven, solo a pranzo</div>
+        <input class="form-input" type="date" id="data" name="data" required />
+        <div class="form-error" data-error-for="data">Seleziona un giorno disponibile (lun–ven)</div>
       </div>
 
       <div class="form-group">
@@ -1095,11 +1060,6 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
           <option value="12:30">12:30</option>
           <option value="13:00">13:00</option>
           <option value="13:30">13:30</option>
-          <option value="19:00">19:00</option>
-          <option value="19:30">19:30</option>
-          <option value="20:00">20:00</option>
-          <option value="20:30">20:30</option>
-          <option value="21:00">21:00</option>
         </select>
         <div class="form-error" data-error-for="ora">Seleziona un orario</div>
       </div>
@@ -1139,17 +1099,19 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
     <span class="trust-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
     <span class="trust-label">su TheFork</span>
   </div>
+  <div class="trust-sep"></div>
+  <a href="tel:+393276580878" class="trust-cta" id="ctaTelBar">&#9742;&nbsp;Chiama</a>
+  <a href="https://wa.me/393276580878?text=Ciao%21+Vorrei+prenotare+un+tavolo+da+Agli+Angeli." class="trust-cta trust-cta-wa" id="ctaWaBar" target="_blank" rel="noopener">WhatsApp</a>
 </aside>
 
 <!-- ============ FOOTER ============ -->
 <footer class="footer">
-  <img src="https://www.osteriaagliangeli.it/wp-content/uploads/2025/05/2851432a-d8fc-45d2-96d4-a8b84ff64847-scaled.png" alt="Osteria Agli Angeli" class="footer-logo" />
+  <img src="assets/logo-footer.webp" alt="Osteria Agli Angeli" class="footer-logo" width="300" height="120" />
   <div class="footer-tagline">Vino e Cucina</div>
   <div class="footer-info">Corso Porta Nuova 28 &middot; Verona</div>
   <div class="footer-links">
-    <!-- TODO: sostituire con link TheFork reale -->
-    <a href="https://www.thefork.it" class="footer-link" target="_blank" rel="noopener">THEFORK</a>
-    <!-- TODO: sostituire con link Google Maps reale -->
+    <a href="tel:+393276580878" class="footer-link" id="ctaTelFooter">TELEFONO</a>
+    <a href="https://wa.me/393276580878?text=Ciao%21+Vorrei+prenotare+un+tavolo+da+Agli+Angeli." class="footer-link" id="ctaWaFooter" target="_blank" rel="noopener">WHATSAPP</a>
     <a href="https://maps.google.com/?q=Corso+Porta+Nuova+28+Verona" class="footer-link" target="_blank" rel="noopener">GOOGLE MAPS</a>
     <a href="#prenota" class="footer-link">PRENOTA</a>
   </div>
@@ -1168,84 +1130,22 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
     obs.observe(footer);
   })();
 
-  /* ============ CALENDAR ============ */
+  /* Date input: set min=oggi, rifiuta sab/dom */
   (function() {
-    const monthNames = ['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
-    const dowNames = ['LUN','MAR','MER','GIO','VEN','SAB','DOM'];
-
-    const calTitle = document.getElementById('calTitle');
-    const calGrid  = document.getElementById('calGrid');
-    const calPrev  = document.getElementById('calPrev');
-    const calNext  = document.getElementById('calNext');
-    const dataInput = document.getElementById('data');
-
-    const today = new Date(); today.setHours(0,0,0,0);
-    let viewYear = today.getFullYear();
-    let viewMonth = today.getMonth();
-    let selectedDate = null;
-
-    function render() {
-      calTitle.textContent = monthNames[viewMonth] + ' ' + viewYear;
-      calGrid.innerHTML = '';
-      dowNames.forEach(d => {
-        const el = document.createElement('div');
-        el.className = 'cal-dow';
-        el.textContent = d;
-        calGrid.appendChild(el);
-      });
-      const firstDay = new Date(viewYear, viewMonth, 1);
-      const startOffset = (firstDay.getDay() + 6) % 7;
-      const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
-      for (let i = 0; i < startOffset; i++) {
-        const empty = document.createElement('div');
-        empty.className = 'cal-day empty';
-        calGrid.appendChild(empty);
+    var inp = document.getElementById('data');
+    var t = new Date();
+    inp.min = t.getFullYear() + '-' + String(t.getMonth()+1).padStart(2,'0') + '-' + String(t.getDate()).padStart(2,'0');
+    var disabled = [0, 6]; // dom, sab
+    inp.addEventListener('change', function() {
+      if (!this.value) return;
+      var d = new Date(this.value + 'T12:00:00');
+      if (disabled.indexOf(d.getDay()) !== -1) {
+        this.value = '';
+        var err = document.querySelector('[data-error-for="data"]');
+        if (err) err.classList.add('visible');
+        this.classList.add('invalid');
       }
-      for (let d = 1; d <= daysInMonth; d++) {
-        const cell = document.createElement('div');
-        cell.className = 'cal-day';
-        cell.textContent = d;
-        const cellDate = new Date(viewYear, viewMonth, d);
-        const isPast = cellDate < today;
-        if (isPast) cell.classList.add('disabled');
-        else cell.addEventListener('click', () => selectDate(cellDate));
-        if (selectedDate &&
-            selectedDate.getFullYear() === cellDate.getFullYear() &&
-            selectedDate.getMonth() === cellDate.getMonth() &&
-            selectedDate.getDate() === cellDate.getDate()) {
-          cell.classList.add('selected');
-        }
-        calGrid.appendChild(cell);
-      }
-    }
-
-    function selectDate(date) {
-      selectedDate = date;
-      const yyyy = date.getFullYear();
-      const mm = String(date.getMonth() + 1).padStart(2,'0');
-      const dd = String(date.getDate()).padStart(2,'0');
-      dataInput.value = yyyy + '-' + mm + '-' + dd;
-      const err = document.querySelector('[data-error-for="data"]');
-      if (err) err.classList.remove('visible');
-      render();
-    }
-
-    calPrev.addEventListener('click', () => {
-      viewMonth--;
-      if (viewMonth < 0) { viewMonth = 11; viewYear--; }
-      if (viewYear < today.getFullYear() || (viewYear === today.getFullYear() && viewMonth < today.getMonth())) {
-        viewMonth = today.getMonth();
-        viewYear  = today.getFullYear();
-      }
-      render();
     });
-    calNext.addEventListener('click', () => {
-      viewMonth++;
-      if (viewMonth > 11) { viewMonth = 0; viewYear++; }
-      render();
-    });
-
-    render();
   })();
 
   /* ============ FORM VALIDATION ============ */
@@ -1263,7 +1163,7 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
 
     form.addEventListener('submit', function(e) {
       e.preventDefault();
-      const fields = ['nome','cognome','email','telefono','persone','data','ora'];
+      const fields = ['nome','email','telefono','persone','data','ora'];
       let ok = true;
       fields.forEach(f => {
         const el = document.getElementById(f);
@@ -1281,16 +1181,19 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
       }
 
       // Invio prenotazione: Google Apps Script (Sheet + email) + evento Meta Lead
+      var _eid = Math.random().toString(36).slice(2) + Date.now().toString(36);
+      // TODO CAPI: leggi event_id dal POST body e invia server-side Lead event (stessa eventID per deduplication)
       try {
         var _p = new URLSearchParams();
-        ['nome','cognome','email','telefono','persone','data','ora','note'].forEach(function(_f){
+        ['nome','email','telefono','persone','data','ora','note'].forEach(function(_f){
           var _el = document.getElementById(_f);
           _p.append(_f, _el ? _el.value : '');
         });
         _p.append('locale', 'Osteria Agli Angeli');
+        _p.append('event_id', _eid);
         fetch('https://script.google.com/macros/s/AKfycbwqMP_rscv5JfLQycm19TyXhlqnJHd0T1Q88jr5tPQfNWJxA5orVsuDQRNKlvGloYqK/exec', { method: 'POST', mode: 'no-cors', body: _p });
       } catch (_err) {}
-      if (typeof fbq === 'function') { fbq('track', 'Lead'); }
+      if (typeof fbq === 'function') { fbq('track', 'Lead', {}, {eventID: _eid}); }
 
       form.innerHTML = ''
         + '<div class="form-success">'
@@ -1305,6 +1208,26 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
       const clear = () => { if (el.id) showError(el.id, false); };
       el.addEventListener('input', clear);
       el.addEventListener('change', clear);
+    });
+  })();
+
+  /* Pixel micro-eventi: FormStart al primo focus, Contact sui click rapidi */
+  (function() {
+    var started = false;
+    var form = document.getElementById('bookingForm');
+    if (form) {
+      form.addEventListener('focusin', function() {
+        if (!started && typeof fbq === 'function') {
+          fbq('trackCustom', 'FormStart');
+          started = true;
+        }
+      }, true);
+    }
+    ['ctaTel','ctaWa','ctaTelBar','ctaWaBar','ctaTelFooter','ctaWaFooter'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.addEventListener('click', function() {
+        if (typeof fbq === 'function') fbq('trackCustom', 'Contact');
+      });
     });
   })();
 </script>
