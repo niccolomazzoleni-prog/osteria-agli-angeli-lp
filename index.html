@@ -1015,34 +1015,14 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
     <form class="form-card" id="bookingForm" novalidate>
       <div class="form-group">
         <label class="form-label" for="nome">NOME</label>
-        <input class="form-input" type="text" id="nome" name="nome" placeholder="Inserisci il tuo nome" required />
+        <input class="form-input" type="text" id="nome" name="nome" placeholder="Il tuo nome" required />
         <div class="form-error" data-error-for="nome">Inserisci il tuo nome</div>
       </div>
 
       <div class="form-group">
-        <label class="form-label" for="email">EMAIL</label>
-        <input class="form-input" type="email" id="email" name="email" placeholder="tua@email.it" required />
-        <div class="form-error" data-error-for="email">Inserisci un'email valida</div>
-      </div>
-
-      <div class="form-group">
         <label class="form-label" for="telefono">TELEFONO</label>
-        <input class="form-input" type="tel" id="telefono" name="telefono" placeholder="+39 ..." required />
+        <input class="form-input" type="tel" id="telefono" name="telefono" placeholder="Il tuo numero di telefono" required />
         <div class="form-error" data-error-for="telefono">Inserisci un numero valido (minimo 8 cifre)</div>
-      </div>
-
-      <div class="form-group">
-        <label class="form-label" for="persone">PERSONE</label>
-        <select class="form-select" id="persone" name="persone" required>
-          <option value="">Seleziona</option>
-          <option value="1">1 persona</option>
-          <option value="2">2 persone</option>
-          <option value="3">3 persone</option>
-          <option value="4">4 persone</option>
-          <option value="5">5 persone</option>
-          <option value="6+">6+ persone</option>
-        </select>
-        <div class="form-error" data-error-for="persone">Seleziona il numero di persone</div>
       </div>
 
       <div class="form-group">
@@ -1050,23 +1030,6 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
         <div class="form-hint">Disponibile lun–ven, solo a pranzo</div>
         <input class="form-input" type="date" id="data" name="data" required />
         <div class="form-error" data-error-for="data">Seleziona un giorno disponibile (lun–ven)</div>
-      </div>
-
-      <div class="form-group">
-        <label class="form-label" for="ora">ORA</label>
-        <select class="form-select" id="ora" name="ora" required>
-          <option value="">Seleziona</option>
-          <option value="12:00">12:00</option>
-          <option value="12:30">12:30</option>
-          <option value="13:00">13:00</option>
-          <option value="13:30">13:30</option>
-        </select>
-        <div class="form-error" data-error-for="ora">Seleziona un orario</div>
-      </div>
-
-      <div class="form-group">
-        <label class="form-label" for="note">NOTE</label>
-        <textarea class="form-textarea" id="note" name="note" placeholder="Richieste speciali, allergie, occasioni particolari (opzionale)" rows="3"></textarea>
       </div>
 
       <button type="submit" class="form-submit">CONFERMA PRENOTAZIONE</button>
@@ -1158,18 +1121,16 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
       if (err) err.classList.toggle('visible', show);
       if (input) input.classList.toggle('invalid', show);
     }
-    const validateEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
     const validatePhone = v => v.replace(/\D/g,'').length >= 8;
 
     form.addEventListener('submit', function(e) {
       e.preventDefault();
-      const fields = ['nome','email','telefono','persone','data','ora'];
+      const fields = ['nome','telefono','data'];
       let ok = true;
       fields.forEach(f => {
         const el = document.getElementById(f);
         const v = (el.value || '').trim();
         let valid = v.length > 0;
-        if (f === 'email') valid = valid && validateEmail(v);
         if (f === 'telefono') valid = valid && validatePhone(v);
         showError(f, !valid);
         if (!valid) ok = false;
@@ -1185,7 +1146,7 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
       // TODO CAPI: leggi event_id dal POST body e invia server-side Lead event (stessa eventID per deduplication)
       try {
         var _p = new URLSearchParams();
-        ['nome','email','telefono','persone','data','ora','note'].forEach(function(_f){
+        ['nome','telefono','data'].forEach(function(_f){
           var _el = document.getElementById(_f);
           _p.append(_f, _el ? _el.value : '');
         });
@@ -1223,10 +1184,16 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
         }
       }, true);
     }
-    ['ctaTel','ctaWa','ctaTelBar','ctaWaBar','ctaTelFooter','ctaWaFooter'].forEach(function(id) {
+    ['ctaTel','ctaTelBar','ctaTelFooter'].forEach(function(id) {
       var el = document.getElementById(id);
       if (el) el.addEventListener('click', function() {
-        if (typeof fbq === 'function') fbq('track', 'Contact');
+        if (typeof fbq === 'function') fbq('track', 'Contact', {method: 'phone'});
+      });
+    });
+    ['ctaWa','ctaWaBar','ctaWaFooter'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.addEventListener('click', function() {
+        if (typeof fbq === 'function') fbq('track', 'Contact', {method: 'whatsapp'});
       });
     });
   })();
