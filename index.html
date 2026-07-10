@@ -29,6 +29,11 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Dancing+Script:wght@400;600&family=Lato:wght@300;400&display=swap" rel="stylesheet">
 
+<!-- Flatpickr: calendario data prenotazione, leggero e senza framework -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/it.js"></script>
+
 <!-- Meta Pixel placeholder: inserire qui lo snippet del pixel -->
 
 <style>
@@ -632,6 +637,23 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
     border-color: var(--error);
     box-shadow: 0 0 0 3px rgba(139,32,32,0.1);
   }
+  /* Flatpickr: calendario coerente col brand (ivory/gold/teal) */
+  .flatpickr-calendar {
+    font-family: var(--font-body);
+    box-shadow: 0 12px 32px rgba(26,26,26,0.16);
+    border: 1px solid rgba(26,26,26,0.1);
+    border-radius: 6px;
+  }
+  .flatpickr-months, .flatpickr-weekdays { background: var(--ivory); }
+  .flatpickr-current-month { font-family: var(--font-body); }
+  .flatpickr-day.selected, .flatpickr-day.selected:hover {
+    background: var(--teal);
+    border-color: var(--teal);
+  }
+  .flatpickr-day.today { border-color: var(--gold); }
+  .flatpickr-day.flatpickr-disabled, .flatpickr-day.flatpickr-disabled:hover {
+    color: rgba(26,26,26,0.25);
+  }
   .form-submit {
     width: 100%;
     background: var(--teal);
@@ -944,9 +966,14 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
         <div class="form-error" data-error-for="telefono-2">Inserisci un numero valido (minimo 8 cifre)</div>
       </div>
       <div class="form-group">
+        <label class="form-label" for="email-2">EMAIL</label>
+        <input class="form-input" type="email" id="email-2" name="email" placeholder="La tua email" required />
+        <div class="form-error" data-error-for="email-2">Inserisci un'email valida</div>
+      </div>
+      <div class="form-group">
         <label class="form-label" for="data-2">DATA</label>
         <div class="form-hint">Disponibile lun–ven, solo a pranzo</div>
-        <input class="form-input" type="date" id="data-2" name="data" required />
+        <input class="form-input" type="text" id="data-2" name="data" placeholder="Seleziona una data" readonly required />
         <div class="form-error" data-error-for="data-2">Seleziona un giorno disponibile (lun–ven)</div>
       </div>
       <div class="hp-field" aria-hidden="true"><input type="text" name="hp" tabindex="-1" autocomplete="off" /></div>
@@ -1054,9 +1081,15 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
       </div>
 
       <div class="form-group">
+        <label class="form-label" for="email">EMAIL</label>
+        <input class="form-input" type="email" id="email" name="email" placeholder="La tua email" required />
+        <div class="form-error" data-error-for="email">Inserisci un'email valida</div>
+      </div>
+
+      <div class="form-group">
         <label class="form-label" for="data">DATA</label>
         <div class="form-hint">Disponibile lun–ven, solo a pranzo</div>
-        <input class="form-input" type="date" id="data" name="data" required />
+        <input class="form-input" type="text" id="data" name="data" placeholder="Seleziona una data" readonly required />
         <div class="form-error" data-error-for="data">Seleziona un giorno disponibile (lun–ven)</div>
       </div>
       <div class="hp-field" aria-hidden="true"><input type="text" name="hp" tabindex="-1" autocomplete="off" /></div>
@@ -1121,25 +1154,27 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
     obs.observe(footer);
   })();
 
-  /* Date input: set min=oggi, rifiuta giorni disabled */
-  function _initDate(id, disabled) {
+  /* Calendario Flatpickr: min=oggi, sabato e domenica disabilitati (lun-ven, solo pranzo) */
+  function _initDate(id) {
     var inp = document.getElementById(id);
-    if (!inp) return;
-    var t = new Date();
-    inp.min = t.getFullYear() + '-' + String(t.getMonth()+1).padStart(2,'0') + '-' + String(t.getDate()).padStart(2,'0');
-    inp.addEventListener('change', function() {
-      if (!this.value) return;
-      var d = new Date(this.value + 'T12:00:00');
-      if (disabled.indexOf(d.getDay()) !== -1) {
-        this.value = '';
+    if (!inp || typeof flatpickr === 'undefined') return;
+    flatpickr(inp, {
+      locale: 'it',
+      dateFormat: 'Y-m-d',
+      altInput: true,
+      altFormat: 'j F Y',
+      altInputClass: 'form-input',
+      minDate: 'today',
+      disable: [function(date) { return date.getDay() === 0 || date.getDay() === 6; }],
+      onChange: function() {
         var err = document.querySelector('[data-error-for="' + id + '"]');
-        if (err) err.classList.add('visible');
-        this.classList.add('invalid');
+        if (err) err.classList.remove('visible');
+        inp.classList.remove('invalid');
       }
     });
   }
-  _initDate('data',   [0, 6]);
-  _initDate('data-2', [0, 6]);
+  _initDate('data');
+  _initDate('data-2');
 
   /* Form validation + submission */
   function _initForm(formId, fieldIds, scriptUrl, locale, successText) {
@@ -1208,8 +1243,8 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
 
   var _angUrl = 'https://script.google.com/macros/s/AKfycbwqMP_rscv5JfLQycm19TyXhlqnJHd0T1Q88jr5tPQfNWJxA5orVsuDQRNKlvGloYqK/exec';
   var _angTxt = 'Ti contatteremo a breve per confermare il tavolo.';
-  _initForm('bookingForm',  ['nome',   'telefono',   'data'],   _angUrl, 'Osteria Agli Angeli', _angTxt);
-  _initForm('bookingForm2', ['nome-2', 'telefono-2', 'data-2'], _angUrl, 'Osteria Agli Angeli', _angTxt);
+  _initForm('bookingForm',  ['nome',   'telefono',   'email',   'data'],   _angUrl, 'Osteria Agli Angeli', _angTxt);
+  _initForm('bookingForm2', ['nome-2', 'telefono-2', 'email-2', 'data-2'], _angUrl, 'Osteria Agli Angeli', _angTxt);
 
   /* Pixel micro-eventi: FormStart al primo focus, Contact sui click rapidi */
   (function() {
