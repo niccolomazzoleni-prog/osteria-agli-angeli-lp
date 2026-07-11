@@ -767,7 +767,6 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
     margin-bottom: 10px;
     font-family: var(--font-body);
   }
-  .hp-field { position: absolute; left: -9999px; opacity: 0; height: 0; overflow: hidden; pointer-events: none; }
   .trust-cta {
     display: inline-block;
     background: var(--teal);
@@ -976,7 +975,6 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
         <input class="form-input" type="text" id="data-2" name="data" placeholder="Seleziona una data" readonly required />
         <div class="form-error" data-error-for="data-2">Seleziona un giorno disponibile (lun–ven)</div>
       </div>
-      <div class="hp-field" aria-hidden="true"><input type="text" name="hp" tabindex="-1" autocomplete="off" /></div>
       <button type="submit" class="form-submit">CONFERMA PRENOTAZIONE</button>
     </form>
   </div>
@@ -1092,7 +1090,6 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
         <input class="form-input" type="text" id="data" name="data" placeholder="Seleziona una data" readonly required />
         <div class="form-error" data-error-for="data">Seleziona un giorno disponibile (lun–ven)</div>
       </div>
-      <div class="hp-field" aria-hidden="true"><input type="text" name="hp" tabindex="-1" autocomplete="off" /></div>
       <button type="submit" class="form-submit">CONFERMA PRENOTAZIONE</button>
     </form>
   </div>
@@ -1180,6 +1177,7 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
   function _initForm(formId, fieldIds, scriptUrl, locale, successText) {
     var form = document.getElementById(formId);
     if (!form) return;
+    var _loadTs = Date.now();
     var validatePhone = function(v) { return v.replace(/\D/g,'').length >= 8; };
     var validateEmail = function(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); };
 
@@ -1192,8 +1190,7 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
 
     form.addEventListener('submit', function(e) {
       e.preventDefault();
-      var _hp = form.querySelector('[name="hp"]');
-      if (_hp && _hp.value.length > 0) {
+      if (Date.now() - _loadTs < 1500) {
         form.innerHTML = '<div class="form-success"><div class="check">&#10003;</div><div class="ok-title">Prenotazione ricevuta</div><div class="ok-text">' + successText + '</div></div>';
         form.scrollIntoView({behavior:'smooth', block:'center'});
         return;
