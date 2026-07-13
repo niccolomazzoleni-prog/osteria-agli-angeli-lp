@@ -1173,6 +1173,34 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
   _initDate('data');
   _initDate('data-2');
 
+  /* Invio via form POST su iframe nascosto: un fetch() in background verso
+     script.google.com viene spesso bloccato da ad-blocker/estensioni privacy
+     (dominio comune nelle liste antitracking). Una vera submit di <form> non lo è. */
+  var _hiddenFrame = null;
+  function _submitViaIframe(scriptUrl, fields) {
+    if (!_hiddenFrame) {
+      _hiddenFrame = document.createElement('iframe');
+      _hiddenFrame.name = 'hidden_booking_frame';
+      _hiddenFrame.style.display = 'none';
+      document.body.appendChild(_hiddenFrame);
+    }
+    var f = document.createElement('form');
+    f.method = 'POST';
+    f.action = scriptUrl;
+    f.target = 'hidden_booking_frame';
+    f.style.display = 'none';
+    Object.keys(fields).forEach(function(k) {
+      var inp = document.createElement('input');
+      inp.type = 'hidden';
+      inp.name = k;
+      inp.value = fields[k];
+      f.appendChild(inp);
+    });
+    document.body.appendChild(f);
+    f.submit();
+    f.parentNode.removeChild(f);
+  }
+
   /* Form validation + submission */
   function _initForm(formId, fieldIds, scriptUrl, locale, successText) {
     var form = document.getElementById(formId);
@@ -1213,14 +1241,14 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
       var _eid = Math.random().toString(36).slice(2) + Date.now().toString(36);
       // TODO CAPI: leggi event_id dal POST body e invia server-side Lead event (stessa eventID per deduplication)
       try {
-        var _p = new URLSearchParams();
+        var _fields = {};
         fieldIds.forEach(function(_fId) {
           var _el = document.getElementById(_fId);
-          if (_el) _p.append(_el.name || _fId, _el.value);
+          if (_el) _fields[_el.name || _fId] = _el.value;
         });
-        _p.append('locale', locale);
-        _p.append('event_id', _eid);
-        fetch(scriptUrl, { method: 'POST', mode: 'no-cors', body: _p });
+        _fields.locale = locale;
+        _fields.event_id = _eid;
+        _submitViaIframe(scriptUrl, _fields);
       } catch (_err) {}
       if (typeof fbq === 'function') { fbq('track', 'Lead', {}, {eventID: _eid}); }
       form.innerHTML = '<div class="form-success">'
