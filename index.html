@@ -23,7 +23,7 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Osteria Agli Angeli - Ristorante di pesce nel cuore di Verona</title>
-<meta name="description" content="Osteria Agli Angeli, ristorante di pesce a Verona in un'antica farmacia storica. Prenota online il menù del pranzo: primo a scelta, calice, acqua e caffè a 29€." />
+<meta name="description" content="Osteria Agli Angeli, ristorante di pesce a Verona in un'antica farmacia storica. Prenota online il menù del pranzo: piatto a scelta, calice di vino, acqua e caffè a 22,99€." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -896,7 +896,7 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
 
 <!-- ============ ANNOUNCEMENT BAR ============ -->
 <div class="announce">
-  <a href="#prenota">Menù del Pranzo da Agli Angeli: primo a scelta + calice + acqua + caffè a 29&euro; &middot; solo a pranzo &middot; prenotazione online <span class="arrow">&rsaquo;</span></a>
+  <a href="#prenota">Menù del Pranzo da Agli Angeli: piatto a scelta + calice di vino + acqua + caffè a 22,99&euro; &middot; solo a pranzo lun-gio &middot; prenotazione online <span class="arrow">&rsaquo;</span></a>
 </div>
 
 <!-- ============ NAVBAR ============ -->
@@ -971,9 +971,9 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
       </div>
       <div class="form-group">
         <label class="form-label" for="data-2">DATA</label>
-        <div class="form-hint">Disponibile lun–ven, solo a pranzo</div>
+        <div class="form-hint">Disponibile lun–gio, solo a pranzo</div>
         <input class="form-input" type="text" id="data-2" name="data" placeholder="Seleziona una data" readonly required />
-        <div class="form-error" data-error-for="data-2">Seleziona un giorno disponibile (lun–ven)</div>
+        <div class="form-error" data-error-for="data-2">Seleziona un giorno disponibile (lun–gio)</div>
       </div>
       <button type="submit" class="form-submit">CONFERMA PRENOTAZIONE</button>
     </form>
@@ -1037,19 +1037,19 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
   <div class="wrap-narrow">
     <div class="eyebrow">SOLO A PRANZO &middot; PRENOTAZIONE ONLINE</div>
     <h2 class="offer-title">Menù del Pranzo</h2>
-    <p class="offer-sub">Un pranzo da Agli Angeli a un prezzo riservato: primo a scelta, calice della casa, acqua e caffè. Solo per chi prenota online.</p>
+    <p class="offer-sub">Un pranzo da Agli Angeli a un prezzo riservato: piatto a scelta dal nostro menù, calice di vino, acqua e caffè. Solo per chi prenota online.</p>
     <div class="offer-box">
       <div class="offer-label">MENÙ DEL PRANZO</div>
       <ul class="offer-dishes">
-        <li><span class="roman">I.</span> <span class="dish">Primo a scelta</span></li>
-        <li><span class="roman">II.</span> <span class="dish">Calice della casa</span></li>
+        <li><span class="roman">I.</span> <span class="dish">Piatto a scelta dal menù</span></li>
+        <li><span class="roman">II.</span> <span class="dish">Calice di vino</span></li>
         <li><span class="roman">III.</span> <span class="dish">Acqua</span></li>
         <li><span class="roman">IV.</span> <span class="dish">Caffè</span></li>
       </ul>
       <hr class="offer-divider" />
-      <div class="offer-price">29<span style="font-size:32px;">&euro;</span></div>
+      <div class="offer-price">22<span style="font-size:32px;">,99&euro;</span></div>
       <div class="offer-price-note">a persona &middot; valido solo a pranzo</div>
-      <div class="offer-fineprint">Valido dal lunedi al venerdi, solo a pranzo. Posti limitati.</div>
+      <div class="offer-fineprint">Valido dal lunedì al giovedì, solo a pranzo. Posti limitati.</div>
       <div class="offer-badge">DISPONIBILE SOLO PRENOTANDO ONLINE</div>
     </div>
     <div class="offer-cta-wrap">
@@ -1086,9 +1086,9 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
 
       <div class="form-group">
         <label class="form-label" for="data">DATA</label>
-        <div class="form-hint">Disponibile lun–ven, solo a pranzo</div>
+        <div class="form-hint">Disponibile lun–gio, solo a pranzo</div>
         <input class="form-input" type="text" id="data" name="data" placeholder="Seleziona una data" readonly required />
-        <div class="form-error" data-error-for="data">Seleziona un giorno disponibile (lun–ven)</div>
+        <div class="form-error" data-error-for="data">Seleziona un giorno disponibile (lun–gio)</div>
       </div>
       <button type="submit" class="form-submit">CONFERMA PRENOTAZIONE</button>
     </form>
@@ -1151,7 +1151,7 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
     obs.observe(footer);
   })();
 
-  /* Calendario Flatpickr: min=oggi, sabato e domenica disabilitati (lun-ven, solo pranzo) */
+  /* Calendario Flatpickr: min=oggi, venerdi/sabato/domenica disabilitati (lun-gio, solo pranzo) */
   function _initDate(id) {
     var inp = document.getElementById(id);
     if (!inp || typeof flatpickr === 'undefined') return;
@@ -1162,7 +1162,7 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
       altFormat: 'j F Y',
       altInputClass: 'form-input',
       minDate: 'today',
-      disable: [function(date) { return date.getDay() === 0 || date.getDay() === 6; }],
+      disable: [function(date) { return date.getDay() === 0 || date.getDay() === 5 || date.getDay() === 6; }],
       onChange: function() {
         var err = document.querySelector('[data-error-for="' + id + '"]');
         if (err) err.classList.remove('visible');
