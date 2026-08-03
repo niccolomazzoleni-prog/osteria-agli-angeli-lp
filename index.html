@@ -1240,7 +1240,7 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
         _fields.event_id = _eid;
         _submitViaIframe(scriptUrl, _fields);
       } catch (_err) {}
-      if (typeof fbq === 'function') { fbq('track', 'Lead', {}, {eventID: _eid}); }
+      if (typeof fbq === 'function') { fbq('track', 'Lead', {value: 22.99, currency: 'EUR'}, {eventID: _eid}); }
       form.innerHTML = '<div class="form-success">'
         + '<div class="check">&#10003;</div>'
         + '<div class="ok-title">Prenotazione ricevuta</div>'
