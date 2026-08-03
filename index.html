@@ -991,6 +991,34 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
         <input class="form-input" type="text" id="data-2" name="data" placeholder="Seleziona una data" readonly required />
         <div class="form-error" data-error-for="data-2">Seleziona un giorno disponibile (lun–gio)</div>
       </div>
+      <div class="form-group">
+        <label class="form-label" for="ora-2">ORA</label>
+        <select class="form-select" id="ora-2" name="ora" required>
+          <option value="" disabled selected>Seleziona un orario</option>
+          <option>12:00</option>
+          <option>12:30</option>
+          <option>13:00</option>
+          <option>13:30</option>
+          <option>14:00</option>
+        </select>
+        <div class="form-error" data-error-for="ora-2">Seleziona un orario</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="persone-2">PERSONE</label>
+        <select class="form-select" id="persone-2" name="persone" required>
+          <option value="" disabled selected>Quanti siete?</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+          <option>7</option>
+          <option>8</option>
+          <option value="9+">9 o più</option>
+        </select>
+        <div class="form-error" data-error-for="persone-2">Indica il numero di persone</div>
+      </div>
       <button type="submit" class="form-submit">CONFERMA PRENOTAZIONE</button>
     </form>
   </div>
@@ -1079,6 +1107,34 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
         <div class="form-hint">Disponibile lun–gio, solo a pranzo</div>
         <input class="form-input" type="text" id="data" name="data" placeholder="Seleziona una data" readonly required />
         <div class="form-error" data-error-for="data">Seleziona un giorno disponibile (lun–gio)</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="ora">ORA</label>
+        <select class="form-select" id="ora" name="ora" required>
+          <option value="" disabled selected>Seleziona un orario</option>
+          <option>12:00</option>
+          <option>12:30</option>
+          <option>13:00</option>
+          <option>13:30</option>
+          <option>14:00</option>
+        </select>
+        <div class="form-error" data-error-for="ora">Seleziona un orario</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="persone">PERSONE</label>
+        <select class="form-select" id="persone" name="persone" required>
+          <option value="" disabled selected>Quanti siete?</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+          <option>7</option>
+          <option>8</option>
+          <option value="9+">9 o più</option>
+        </select>
+        <div class="form-error" data-error-for="persone">Indica il numero di persone</div>
       </div>
       <button type="submit" class="form-submit">CONFERMA PRENOTAZIONE</button>
     </form>
@@ -1258,8 +1314,8 @@ src="https://www.facebook.com/tr?id=983973137893830&ev=PageView&noscript=1"
 
   var _angUrl = 'https://script.google.com/macros/s/AKfycbwqMP_rscv5JfLQycm19TyXhlqnJHd0T1Q88jr5tPQfNWJxA5orVsuDQRNKlvGloYqK/exec';
   var _angTxt = 'Ti contatteremo a breve per confermare il tavolo.';
-  _initForm('bookingForm',  ['nome',   'telefono',   'email',   'data'],   _angUrl, 'Osteria Agli Angeli', _angTxt);
-  _initForm('bookingForm2', ['nome-2', 'telefono-2', 'email-2', 'data-2'], _angUrl, 'Osteria Agli Angeli', _angTxt);
+  _initForm('bookingForm',  ['nome',   'telefono',   'email',   'data',   'ora',   'persone'],   _angUrl, 'Osteria Agli Angeli', _angTxt);
+  _initForm('bookingForm2', ['nome-2', 'telefono-2', 'email-2', 'data-2', 'ora-2', 'persone-2'], _angUrl, 'Osteria Agli Angeli', _angTxt);
 
   /* Pixel micro-eventi: FormStart al primo focus, Contact sui click rapidi */
   (function() {
